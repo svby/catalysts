@@ -1,0 +1,2 @@
+package catalysts.training.trail
+
