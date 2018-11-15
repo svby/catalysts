@@ -1,6 +1,7 @@
 package catalysts.training.trail
 
 import catalysts.Vector2
+import java.util.*
 
 enum class Direction(val vector: Vector2) {
 
@@ -19,14 +20,18 @@ class Jim {
     var direction = Direction.North
         private set
 
-    var position = Vector2()
+    var position = Vector2.ZERO
         private set
 
     var distance = 0
         private set
 
+    private val _vertices = LinkedList<Vector2>(listOf(Vector2.ZERO))
+    val vertices: List<Vector2> = Collections.unmodifiableList(_vertices)
+
     fun move(count: Int) {
         position += direction.vector * count
+        _vertices.add(position)
         distance++
     }
 
@@ -40,6 +45,10 @@ class Jim {
         repeat(count) {
             direction = direction.right()
         }
+    }
+
+    fun stop() {
+        _vertices.add(Vector2.ZERO)
     }
 
 }
