@@ -30,6 +30,7 @@ class Jim {
     val vertices: List<Vector2> = Collections.unmodifiableList(_vertices)
 
     fun move(count: Int) {
+        _vertices.add(position + direction.vector * (count / 2.0))
         position += direction.vector * count
         _vertices.add(position)
         distance++
