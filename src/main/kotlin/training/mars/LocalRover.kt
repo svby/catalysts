@@ -1,6 +1,6 @@
 package training.mars
 
-class Rover(val wheelBase: Double) {
+class LocalRover(val wheelBase: Double) {
 
     var position = Vector2(0.0, 0.0)
         private set

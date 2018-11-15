@@ -3,7 +3,7 @@ package training.mars
 import java.util.*
 
 fun main(): Unit = Scanner(System.`in`).use { input ->
-    val rover = Rover(input.nextDouble())
+    val rover = LocalRover(input.nextDouble())
 
     repeat(input.nextInt()) {
         val distance = input.nextDouble()
