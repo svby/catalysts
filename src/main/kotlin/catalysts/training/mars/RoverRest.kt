@@ -1,5 +1,6 @@
 package catalysts.training.mars
 
+import catalysts.Vector2
 import com.mashape.unirest.http.Unirest
 
 object RoverRest {

@@ -1,5 +1,7 @@
 package catalysts.training.mars
 
+import catalysts.Vector2
+
 class LocalRover(val wheelBase: Double) {
 
     var position = Vector2(0.0, 0.0)
