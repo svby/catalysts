@@ -24,12 +24,19 @@ object RoverRest {
         return uuid
     }
 
-    fun retrieveRover(uuid: String) =
+    fun retrieveRover(uuid: String, managed: Boolean = false) =
         Unirest.get("$BASE_URL/{uuid}")
             .routeParam("uuid", uuid)
             .asString()
             .body.split(Regex(" +")).let {
-            RemoteRover(uuid, it[0].toDouble(), it[1].toDouble(), it[2].toDouble(), it[3].toDouble(), it[4].toDouble())
+            RemoteRover(
+                uuid,
+                managed,
+                it[0].toDouble(),
+                it[1].toDouble(),
+                Vector2(it[2].toDouble(), it[3].toDouble()),
+                it[4].toDouble()
+            )
         }
 
     fun moveRover(uuid: String, distance: Double, steeringAngle: Double): MoveResult {
@@ -44,7 +51,16 @@ object RoverRest {
             .body.split(Regex(" +"))
 
         return when (body[0].toLowerCase()) {
-            "ok" -> MoveResult.Ok(body[1].toDouble(), body[2].toDouble(), body[3].toDouble(), body[4].toDouble())
+            "ok" -> {
+                if (body.size == 5)
+                    MoveResult.Ok(
+                        body[1].toDouble(),
+                        Vector2(body[2].toDouble(), body[3].toDouble()),
+                        body[4].toDouble()
+                    )
+                else
+                    MoveResult.Ok(body[1].toDouble(), null, null)
+            }
             "pass" -> MoveResult.Pass(body[1], body[2].toDouble())
             "error" -> MoveResult.Error(body[1])
             else -> throw NotImplementedError()
