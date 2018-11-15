@@ -1,4 +1,4 @@
-package training.mars
+package catalysts.training.mars
 
 sealed class MoveResult {
 

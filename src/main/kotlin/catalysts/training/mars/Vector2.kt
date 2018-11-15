@@ -1,4 +1,4 @@
-package training.mars
+package catalysts.training.mars
 
 import kotlin.math.cos
 import kotlin.math.sin

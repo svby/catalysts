@@ -1,4 +1,6 @@
-package training.mars
+package catalysts.training.mars
+
+import catalysts.output
 
 fun main() {
     val username = System.getProperty("catcoder.username")

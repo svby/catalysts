@@ -1,4 +1,4 @@
-package training.mars
+package catalysts.training.mars
 
 import com.mashape.unirest.http.Unirest
 
