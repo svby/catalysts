@@ -18,7 +18,7 @@ data class Vector2(val x: Double, val y: Double) {
 
     }
 
-    constructor() : this(0.0, 0.0)
+    override fun toString() = "($x, $y)"
 
     operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
     operator fun minus(other: Vector2) = Vector2(x - other.x, y - other.y)
