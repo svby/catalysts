@@ -1,4 +1,6 @@
-package training.mars
+package catalysts.training.mars
+
+import catalysts.output
 
 private const val epsilon = 0.001
 
@@ -36,5 +38,5 @@ fun main() {
 
     val res = rover.move((target - rover.position).length, 0.0).requirePass()
 
-    println(res.key)
+    output(res.key)
 }

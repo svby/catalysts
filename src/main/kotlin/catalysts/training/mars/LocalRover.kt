@@ -1,4 +1,4 @@
-package training.mars
+package catalysts.training.mars
 
 class LocalRover(val wheelBase: Double) {
 

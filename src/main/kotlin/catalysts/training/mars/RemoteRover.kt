@@ -1,4 +1,4 @@
-package training.mars
+package catalysts.training.mars
 
 class RemoteRover(
     val uuid: String,
@@ -35,7 +35,7 @@ class RemoteRover(
     override fun toString() =
         "RemoteRover(uuid='$uuid', wheelBase=$wheelBase, maxSteerAngle=$maxSteerAngle, target=$target, targetRadius=$targetRadius)"
 
-    fun getTurnRadius(steeringAngle: Double) = training.mars.getTurnRadius(wheelBase, steeringAngle)
+    fun getTurnRadius(steeringAngle: Double) = catalysts.training.mars.getTurnRadius(wheelBase, steeringAngle)
 
     fun turn(angle: Double, steeringAngle: Double): MoveResult {
         val radius = getTurnRadius(steeringAngle)
