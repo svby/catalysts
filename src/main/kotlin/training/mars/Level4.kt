@@ -8,7 +8,7 @@ fun main() {
     }
     println("Logged in as $username")
 
-    val rover = RemoteRover.create("L4_MFJS3487") ?: return
+    val rover = RemoteRover.create("L4_MFJS3487", true) ?: return
     println("Created rover $rover")
 
     println(rover.move(100.0, 0.0))
@@ -16,7 +16,7 @@ fun main() {
     // Turn 270 degrees CW
     run {
         val angle = rover.maxSteerAngle
-        val radius = getTurnRadius(rover.wheelBase, angle)
+        val radius = rover.getTurnRadius(angle)
 
         val distance = 1.5 * Math.PI * radius
         rover.move(distance, angle).requireOk()
@@ -25,12 +25,12 @@ fun main() {
     // Turn 90 degrees CCW
     val remaining = run {
         val angle = -rover.maxSteerAngle
-        val radius = getTurnRadius(rover.wheelBase, angle)
+        val radius = rover.getTurnRadius(angle)
 
         val distance = -0.5 * Math.PI * radius
         val result = rover.move(distance, angle).requireOk()
 
-        result.y!!
+        result.position!!.y
     }
 
     val result = rover.move(remaining, 0.0).requirePass()
