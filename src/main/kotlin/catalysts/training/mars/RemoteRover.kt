@@ -1,5 +1,7 @@
 package catalysts.training.mars
 
+import catalysts.Vector2
+
 class RemoteRover(
     val uuid: String,
     val managed: Boolean,
