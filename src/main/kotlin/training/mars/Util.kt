@@ -3,7 +3,6 @@ package training.mars
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
-
 fun getTurnRadius(wheelBase: Double, steeringAngle: Double): Double {
     return wheelBase / Math.sin(Math.toRadians(steeringAngle))
 }
@@ -38,3 +37,6 @@ fun clipboard(string: String) {
     val clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
     clipboard.setContents(selection, selection)
 }
+
+fun MoveResult.requirePass() = this as? MoveResult.Pass ?: throw IllegalStateException("Objective not yet complete")
+fun MoveResult.requireOk() = this as? MoveResult.Ok ?: throw IllegalStateException("Move did not succeed")
