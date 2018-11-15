@@ -29,6 +29,7 @@ fun output(vararg values: Any) {
 fun Double.positiveAngle(): Double {
     var copy = this
     while (copy < 0) copy += 360
+    while (copy > 360) copy -= 360
     return copy
 }
 
