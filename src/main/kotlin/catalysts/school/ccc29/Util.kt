@@ -2,6 +2,7 @@ package catalysts.school.ccc29
 
 import catalysts.Vector2
 import catalysts.Vector3
+import java.util.*
 
 typealias Point = Pair<Int, Int>
 
@@ -11,6 +12,9 @@ fun Point.toVector3(height: Int) = Vector3(first.toDouble(), second.toDouble(), 
 lateinit var map: Array<IntArray>
 var rows = 0
 var columns = 0
+var threshold = 0
+var velocity = 0.0
+val segments = LinkedList<Pair<Double, Int>>()
 
 fun requiredGuards(distance: Double, ranges: List<Pair<Double, Int>>): Int {
     for (segment in ranges) {
