@@ -96,8 +96,6 @@ private fun heliGreedyCenter(): Iterable<Int> {
         visited.add(nextIndex)
 
         position = next.center
-
-        println("at $position")
     }
 
     if (deployed <= threshold) println("Passed $deployed / $threshold")
