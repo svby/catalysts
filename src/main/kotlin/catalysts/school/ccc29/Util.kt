@@ -15,6 +15,7 @@ var columns = 0
 var threshold = 0
 var velocity = 0.0
 val segments = LinkedList<Pair<Double, Int>>()
+val interestPoints = ArrayDeque<Point>()
 
 fun requiredGuards(distance: Double, ranges: List<Pair<Double, Int>>): Int {
     for (segment in ranges) {
