@@ -76,7 +76,6 @@ fun main(): Unit = Scanner(System.`in`).use { input ->
 //    output(ordered.joinToString(" ") { "${it.first} ${it.second.tiles.size}" })
 
     val ranges = input.nextInt()
-    val segments = LinkedList<Pair<Double, Int>>()
 
     repeat(ranges) {
         segments.add(Pair(input.nextDouble(), input.nextInt()))
