@@ -6,7 +6,7 @@ import java.util.*
 private val buildings = LinkedList<Int>()
 private val seen = HashSet<Point>()
 
-private fun recur(row: Int, column: Int) {
+private fun preprocess(row: Int, column: Int) {
     val p = Point(row, column)
 
     val height = map[row][column]
@@ -15,13 +15,13 @@ private fun recur(row: Int, column: Int) {
     seen.add(p)
 
     buildings.push(1)
-    recur(row + 1, column, height)
-    recur(row - 1, column, height)
-    recur(row, column + 1, height)
-    recur(row, column - 1, height)
+    preprocess(row + 1, column, height)
+    preprocess(row - 1, column, height)
+    preprocess(row, column + 1, height)
+    preprocess(row, column - 1, height)
 }
 
-private fun recur(row: Int, column: Int, height: Int) {
+private fun preprocess(row: Int, column: Int, height: Int) {
     val p = Point(row, column)
     if (p in seen) return
 
@@ -31,10 +31,10 @@ private fun recur(row: Int, column: Int, height: Int) {
     if (map[row][column] == height) {
         buildings.push(buildings.pop() + 1)
         seen.add(p)
-        recur(row + 1, column, height)
-        recur(row - 1, column, height)
-        recur(row, column + 1, height)
-        recur(row, column - 1, height)
+        preprocess(row + 1, column, height)
+        preprocess(row - 1, column, height)
+        preprocess(row, column + 1, height)
+        preprocess(row, column - 1, height)
     }
 }
 
@@ -44,16 +44,16 @@ fun main(): Unit = Scanner(System.`in`).use { input ->
 
     map = Array(rows) { IntArray((columns)) }
 
-    outer@ for (row in 0 until rows) {
+    for (row in 0 until rows) {
         for (column in 0 until columns) {
             val height = input.nextInt()
             map[row][column] = height
         }
     }
 
-    outer@ for (row in 0 until rows) {
+    for (row in 0 until rows) {
         for (column in 0 until columns) {
-            recur(row, column)
+            preprocess(row, column)
         }
     }
 

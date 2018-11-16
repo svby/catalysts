@@ -29,9 +29,14 @@ data class Vector2(val x: Double, val y: Double) {
     operator fun times(scalar: Float) = Vector2(x * scalar, y * scalar)
     operator fun times(scalar: Double) = Vector2(x * scalar, y * scalar)
     operator fun times(other: Vector2) = x * other.x + y * other.y
-    operator fun div(scalar: Double) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Byte) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Short) = Vector2(x / scalar, y / scalar)
     operator fun div(scalar: Int) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Long) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Float) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Double) = Vector2(x / scalar, y / scalar)
     operator fun unaryMinus() = Vector2(-x, -y)
+    operator fun unaryPlus() = this
 
     val length: Double
         get() {

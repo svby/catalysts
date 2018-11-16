@@ -17,7 +17,7 @@ private data class Building4(val tiles: LinkedList<Vector3>) {
 
 }
 
-private fun recur(row: Int, column: Int) {
+private fun preprocess(row: Int, column: Int) {
     val p = Point(row, column)
 
     val height = map[row][column]
@@ -26,13 +26,13 @@ private fun recur(row: Int, column: Int) {
     seen.add(p)
 
     buildings.push(Building4(LinkedList(listOf(p.toVector3(height)))))
-    recur(row + 1, column, height)
-    recur(row - 1, column, height)
-    recur(row, column + 1, height)
-    recur(row, column - 1, height)
+    preprocess(row + 1, column, height)
+    preprocess(row - 1, column, height)
+    preprocess(row, column + 1, height)
+    preprocess(row, column - 1, height)
 }
 
-private fun recur(row: Int, column: Int, height: Int) {
+private fun preprocess(row: Int, column: Int, height: Int) {
     val p = Point(row, column)
     if (p in seen) return
 
@@ -42,10 +42,10 @@ private fun recur(row: Int, column: Int, height: Int) {
     if (map[row][column] == height) {
         buildings.peek().tiles.add(p.toVector3(height))
         seen.add(p)
-        recur(row + 1, column, height)
-        recur(row - 1, column, height)
-        recur(row, column + 1, height)
-        recur(row, column - 1, height)
+        preprocess(row + 1, column, height)
+        preprocess(row - 1, column, height)
+        preprocess(row, column + 1, height)
+        preprocess(row, column - 1, height)
     }
 }
 
@@ -55,16 +55,16 @@ fun main(): Unit = Scanner(System.`in`).use { input ->
 
     map = Array(rows) { IntArray((columns)) }
 
-    outer@ for (row in 0 until rows) {
+    for (row in 0 until rows) {
         for (column in 0 until columns) {
             val height = input.nextInt()
             map[row][column] = height
         }
     }
 
-    outer@ for (row in 0 until rows) {
+    for (row in 0 until rows) {
         for (column in 0 until columns) {
-            recur(row, column)
+            preprocess(row, column)
         }
     }
 
@@ -72,8 +72,6 @@ fun main(): Unit = Scanner(System.`in`).use { input ->
 
     val ordered = buildings.sortedBy { it.tiles.size }
             .mapIndexed { index, b -> Pair(index, b) }
-
-//    output(ordered.joinToString(" ") { "${it.first} ${it.second.tiles.size}" })
 
     val ranges = input.nextInt()
 
@@ -89,7 +87,6 @@ fun main(): Unit = Scanner(System.`in`).use { input ->
                 val distance = distanceFromCenter(flat)
 
                 val needed = requiredGuards(distance, segments)
-                println("distance for $flat is $distance ($needed guards)")
                 guards += needed
             }
             append("$index $guards")
