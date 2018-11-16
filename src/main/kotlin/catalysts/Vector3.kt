@@ -1,8 +1,5 @@
 package catalysts
 
-import kotlin.math.cos
-import kotlin.math.sin
-
 data class Vector3(val x: Double, val y: Double, val z: Double) {
 
     companion object {
@@ -19,37 +16,29 @@ data class Vector3(val x: Double, val y: Double, val z: Double) {
         @JvmStatic
         val ZERO = Vector3(0.0, 0.0, 0.0)
 
-
     }
 
     override fun toString() = "($x, $y, $z)"
 
     operator fun plus(other: Vector3) = Vector3(x + other.x, y + other.y, z + other.z)
     operator fun minus(other: Vector3) = Vector3(x - other.x, y - other.y, z - other.z)
-    operator fun div(scalar: Double) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun times(scalar: Byte) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun times(scalar: Short) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun times(scalar: Int) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun times(scalar: Long) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun times(scalar: Float) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun times(scalar: Double) = Vector3(x * scalar, y * scalar, z * scalar)
+    operator fun div(scalar: Byte) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun div(scalar: Short) = Vector3(x / scalar, y / scalar, z / scalar)
     operator fun div(scalar: Int) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun div(scalar: Long) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun div(scalar: Float) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun div(scalar: Double) = Vector3(x / scalar, y / scalar, z / scalar)
+    operator fun unaryMinus() = Vector3(-x, -y, -z)
+    operator fun unaryPlus() = this
 
-    val xy: Vector2
-        get() {
-            return Vector2(x, y)
-        }
+    val xy: Vector2 get() = Vector2(x, y)
 
-    val length: Double
-        get() {
-            return Math.sqrt(x * x + y * y + z * z)
-        }
-
-    val angle: Double
-        get() {
-            return Math.toDegrees(Math.atan2(x, y))
-        }
-
-    fun rotate(angle: Double) = Math.toRadians(angle).let { rad ->
-        Vector2(
-                cos(rad) * x + sin(rad) * y,
-                -sin(rad) * x + cos(rad) * y
-        )
-    }
-
+    val length: Double get() = Math.sqrt(x * x + y * y + z * z)
 
 }
