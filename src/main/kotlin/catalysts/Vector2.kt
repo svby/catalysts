@@ -29,6 +29,8 @@ data class Vector2(val x: Double, val y: Double) {
     operator fun times(scalar: Float) = Vector2(x * scalar, y * scalar)
     operator fun times(scalar: Double) = Vector2(x * scalar, y * scalar)
     operator fun times(other: Vector2) = x * other.x + y * other.y
+    operator fun div(scalar: Double) = Vector2(x / scalar, y / scalar)
+    operator fun div(scalar: Int) = Vector2(x / scalar, y / scalar)
     operator fun unaryMinus() = Vector2(-x, -y)
 
     val length: Double
@@ -43,9 +45,11 @@ data class Vector2(val x: Double, val y: Double) {
 
     fun rotate(angle: Double) = Math.toRadians(angle).let { rad ->
         Vector2(
-            cos(rad) * x + sin(rad) * y,
-            -sin(rad) * x + cos(rad) * y
+                cos(rad) * x + sin(rad) * y,
+                -sin(rad) * x + cos(rad) * y
         )
     }
+
+    fun toVector3(z: Double = 0.0) = Vector3(x, y, z)
 
 }
