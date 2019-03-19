@@ -17,6 +17,7 @@ they are finished.
  - Trail
  - Fibonacci
  - Flow* (CCC 2014)
+ - Deletable Primes
  
 \* = input files included
 
