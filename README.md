@@ -10,11 +10,15 @@ they are finished.
 ### Contests
 
  - School CCC 29 (with tasks)
+ - CCC 2014 (with tasks)
 
 ### Training
 
  - Trail
  - Fibonacci
+ - Flow* (CCC 2014)
+ 
+\* = input files included
 
 ## In progress
 ### Training
